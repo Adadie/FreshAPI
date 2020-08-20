@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "This is an API for FreshBlogs",
   "main": "index.js",
-    "node": "v14.8.0",
+  "engines": {
+    "node": "v14.8.0"
+  },
   "scripts": {
     "start": "node index",
     "dev": "nodemon index",
