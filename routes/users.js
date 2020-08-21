@@ -9,7 +9,7 @@ const {regvalidation, loginvalidation} = require('../Validations/uservalidation'
 
 //Register User
 router.post('/', async (req, res)=>{
-
+ 
 //Validate register before submitting
     const {error} = regvalidation(req.body);
     if(error) {
