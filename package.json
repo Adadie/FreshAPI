@@ -1,0 +1,32 @@
+{
+  "name": "freshapi",
+  "version": "1.0.0",
+  "description": "This is an API for FreshBlogs",
+  "main": "index.js",
+  "engines": {
+    "node": "v14.8.0"
+  },
+  "scripts": {
+    "start": "node index",
+    "dev": "nodemon index",
+    "build": "babel routes -d babeledroutes"
+  },
+  "author": "Adadie-Junior",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "bcryptjs": "^2.4.3",
+    "body-parse": "^0.1.0",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^3.6.0",
+    "mongoose": "^5.10.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.1",
+    "nodemon": "^2.0.4"
+  }
+}
