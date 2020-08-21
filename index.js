@@ -8,6 +8,7 @@ app.use(bodyParser.json());
 
 //Import routes
 const postRoute = require('./routes/posts');
+//const commentRoute = require('./routes/comment');
 const userRoute = require('./routes/users');
 const messageRoute = require('./routes/messages');
 
@@ -24,22 +25,19 @@ mongoose.connect(
         }
     });
 
-//Middleware
-/*app.use('/posts', ()=>{
-    console.log('MIddlewares run when the route is called');
-});*/
-
 
 app.use('/posts', postRoute);
+//app.use('/comment', commentRoute);
 app.use('/users', userRoute);
 app.use('/messages', messageRoute);
 
 //ROUTES
 app.get('/', (req, res)=>{
-    res.send('Hello Rwanda')
+    res.status(200).send('Hello Rwanda')
 });
 
 //Listening
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Server Running on port ${port}`)
 );
+module.exports = app;
