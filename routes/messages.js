@@ -2,10 +2,18 @@ const express = require('express');
 const router = express.Router();
 const Message = require('../models/messagemodel');
 const verify = require('./verifytoken');
+const {postvalidation} = require('../Validations/messagevalidation');
 
 
 //Submit Message
 router.post('/', (req, res)=>{
+
+    //Validate message before submitting
+    const {error} = messagevalidation(req.body);
+    if(error) {
+        return res.status(400).send(error.details[0].message);
+    }
+
     const message = new Message({
         Names: req.body.Names,
         Email: req.body.Email,
@@ -54,6 +62,12 @@ router.delete('/:messageId', async (req,res)=>{
 
 //Update Message
 router.patch('/:messageId', async (req,res)=>{
+
+    //Validate post before updating
+    const {error} = messagevalidation(req.body);
+    if(error) {
+        return res.status(400).send(error.details[0].message);
+    }
     try{
         const updatedMessage= await Message.updateOne({_id: req.params.messageId}, {$set: {Names: req.body.Names,
             Email: req.body.Email,

@@ -27,22 +27,27 @@ const salt = await bcrypt.genSalt(10);
 const hashedPassword = await bcrypt.hash(req.body.Password, salt);
 
 //Creating new User
-    const user = new User({
+    const newuser = User({
         Fname: req.body.Fname,
         Lname: req.body.Lname,
         Email: req.body.Email,
         Password: hashedPassword
     });
+    const newdata= User({
+        Fname: req.body.Fname,
+        Lname: req.body.Lname
+    });
     try{
-    res.send(user);
+    await newuser.save()
+        res.json(newdata);
     }
-    catch(err) {
-        res.status(400).send(err);
+    catch(err){
+        res.json({message: err});
     }
 });
 
-//Logging in users
-//Submit User
+
+//Logging in user
 router.post('/login', async (req, res)=>{
 //Validate register before loggin user in
 const {error} = loginvalidation(req.body);
@@ -85,7 +90,7 @@ router.get('/:userId', async (req, res)=>{
         res.json(user);
     }
     catch(err){
-        res.json({message:err});
+        res.send({message:err});
     }
 });
  
@@ -93,7 +98,7 @@ router.get('/:userId', async (req, res)=>{
 router.delete('/:userId', async (req,res)=>{
     try{
         const deletedUser= await User.remove({_id: req.params.userId});
-        res.json(deletedUser);
+        res.json('Succesfully deleted');
     }catch(err){
         res.json({message: err});
     }
@@ -101,12 +106,21 @@ router.delete('/:userId', async (req,res)=>{
 
 //Update user
 router.patch('/:userId', async (req,res)=>{
+    //Validate register before submitting
+    const {error} = regvalidation(req.body);
+    if(error) {
+        return res.status(400).send(error.details[0].message);
+    }
+
+//Hashing Password
+const salt = await bcrypt.genSalt(10);
+const hashedPassword = await bcrypt.hash(req.body.Password, salt);
     try{
         const updatedUser= await User.updateOne({_id: req.params.userId}, {$set: {Fname: req.body.Fname,
             Lname: req.body.Lname,
             Email: req.body.Email,
             Password: req.body.Password}});
-        res.json(updatedUser);
+        res.json('Succesfully updated User');
     }catch(err){
         res.json({message: err});
     }

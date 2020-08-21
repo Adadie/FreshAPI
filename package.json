@@ -8,7 +8,8 @@
   },
   "scripts": {
     "start": "node index",
-    "dev": "nodemon index"
+    "dev": "nodemon index",
+    "test": "mocha --timeout 10000"
   },
   "author": "Adadie-Junior",
   "license": "ISC",
@@ -24,6 +25,9 @@
     "mongoose": "^5.10.0"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "mocha": "^8.1.1",
     "nodemon": "^2.0.4"
   }
 }
