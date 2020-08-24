@@ -1,0 +1,17 @@
+language: node_js
+node_js:
+- 14.8.0
+
+install:
+  - npm ci
+
+script:
+  -npm test
+  -npm run build
+
+deploy:
+  provider: testing
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  on:
+    branch: testing
