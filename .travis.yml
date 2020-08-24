@@ -7,10 +7,6 @@ install:
 
 script:
   -npm test
-<<<<<<< HEAD
-=======
-  -npm run build
->>>>>>> 8a03b45417dbd714f658264759cb66a4ad4832e2
 
 deploy:
   provider: testing
