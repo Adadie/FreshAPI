@@ -24,7 +24,7 @@ router.post('/',verify, (req, res)=>{
     });
     post.save()
     .then(data => {
-        res.json(data);
+        res.json({data, id:req.user._id});
     })
     .catch(err=>{
         res.json({message: err});
@@ -33,7 +33,7 @@ router.post('/',verify, (req, res)=>{
 
 //Get back all posts
 
-router.get('/', async (req, res)=> {
+router.get('/',verify, async (req, res)=> {
     try{
         const posts = await Post.find();
         res.json(posts);
@@ -43,7 +43,7 @@ router.get('/', async (req, res)=> {
 });
 
 //Get Specific Post
-router.get('/:postId', async (req, res)=>{
+router.get('/:postId',verify, async (req, res)=>{
     try{
         const post = await Post.findById(req.params.postId);
         res.json(post);
@@ -54,10 +54,10 @@ router.get('/:postId', async (req, res)=>{
 });
  
 //Delete Post
-router.delete('/:postId',verify, async (req,res)=>{
+router.delete('/Delete',verify, async (req,res)=>{
     try{
-        const deletedPost= await Post.remove({_id: req.params.postId});
-        res.json(deletedPost);
+        const deletedPost= await Post.remove({_id: req.user._id});
+        res.json('Successfully Deleted Post');
     }catch(err){
         res.json({message: err});
     }
@@ -74,7 +74,7 @@ router.patch('/:postId',verify, async (req,res)=>{
         const updatedPost= await Post.updateOne({_id: req.params.postId}, {$set: {Author_names: req.body.Author_names,
             Title: req.body.Title,
             Content: req.body.Content}});
-        res.json(updatedPost);
+        res.json('Successfully Updated Post');
     }catch(err){
         res.json({message: err});
     }

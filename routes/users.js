@@ -1,6 +1,7 @@
 const express = require('express');
 const bcrypt = require ('bcryptjs');
 const jwt = require('jsonwebtoken');
+const verify = require('./verifytoken');
 require('dotenv/config');
 
 const router = express.Router();
@@ -67,28 +68,28 @@ if(!validpassword){
 }
     // Creating Token
 const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
-res.header('auth-token', token).send(token);
+res.header('auth-token', token).send({token});
 
 });
 
 
 //Get back all Users
 
-router.get('/', async (req, res)=> {
-    data = users({
-        Fname: req.body.Fname,
-        Lname: req.body.Lname
-    });
+router.get('/',verify, async (req, res)=> {
     try{
         const users = await User.find();
-        res.json(data);
+        // data = users({
+        //     Fname: req.body.Fname,
+        //     Lname: req.body.Lname
+        // });
+        res.json(users);
     }catch(err){
         res.json({message: err});
     }
 });
 
 //Get Specific User
-router.get('/:userId', async (req, res)=>{
+router.get('/:userId',verify, async (req, res)=>{
     try{
         const user = await User.findById(req.params.userId);
         res.json(user);
@@ -99,9 +100,9 @@ router.get('/:userId', async (req, res)=>{
 });
  
 //Delete User
-router.delete('/:userId', async (req,res)=>{
+router.delete('/:userId',verify, async (req,res)=>{
     try{
-        const deletedUser= await User.remove({_id: req.params.userId});
+        const deletedUser= await User.remove({_id: req.user._id});
         res.json('Succesfully deleted');
     }catch(err){
         res.json({message: err});
@@ -109,7 +110,7 @@ router.delete('/:userId', async (req,res)=>{
 });
 
 //Update user
-router.patch('/:userId', async (req,res)=>{
+router.patch('/update', verify, async (req,res)=>{
     //Validate register before submitting
     const {error} = regvalidation(req.body);
     if(error) {
@@ -120,7 +121,7 @@ router.patch('/:userId', async (req,res)=>{
 const salt = await bcrypt.genSalt(10);
 const hashedPassword = await bcrypt.hash(req.body.Password, salt);
     try{
-        const updatedUser= await User.updateOne({_id: req.params.userId}, {$set: {Fname: req.body.Fname,
+        const updatedUser= await User.updateOne({_id: req.user._id}, {$set: {Fname: req.body.Fname,
             Lname: req.body.Lname,
             Email: req.body.Email,
             Password: req.body.Password}});
