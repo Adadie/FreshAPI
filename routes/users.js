@@ -75,9 +75,13 @@ res.header('auth-token', token).send(token);
 //Get back all Users
 
 router.get('/', async (req, res)=> {
+    data = users({
+        Fname: req.body.Fname,
+        Lname: req.body.Lname
+    });
     try{
         const users = await User.find();
-        res.json(users);
+        res.json(data);
     }catch(err){
         res.json({message: err});
     }

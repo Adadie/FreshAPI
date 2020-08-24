@@ -2,7 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 const Post = require('../models/postmodel');
-const Comment = require('../models/commentmodel');
+//const Comment = require('../models/commentmodel');
 const verify = require('./verifytoken');
 const {postvalidation} = require('../Validations/postvalidations');
 const {commentvalidation} = require('../Validations/commentvalidation');
@@ -15,6 +15,8 @@ router.post('/',verify, (req, res)=>{
     if(error) {
         return res.status(400).send(error.details[0].message);
     }
+
+    //Create new post
     const post = new Post({
         Author_names: req.body.Author_names,
         Title: req.body.Title,
