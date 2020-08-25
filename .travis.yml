@@ -5,9 +5,7 @@ node_js:
 install:
   - npm ci
 
-script:
-  -npm run build
-
+services: mongodb
 deploy:
   provider: testing
   skip-cleanup: true
