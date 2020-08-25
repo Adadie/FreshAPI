@@ -1,8 +1,8 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const Message = require('../models/messagemodel');
-const verify = require('./verifytoken');
-const {postvalidation} = require('../Validations/messagevalidation');
+import Message from '../models/messagemodel';
+import verify from './verifytoken';
+import {messagevalidation} from '../Validations/messagevalidation';
 
 
 //Submit Message

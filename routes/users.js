@@ -1,12 +1,12 @@
-const express = require('express');
-const bcrypt = require ('bcryptjs');
-const jwt = require('jsonwebtoken');
-const verify = require('./verifytoken');
-require('dotenv/config');
+import express from 'express';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import verify from './verifytoken';
+import 'dotenv/config';
 
 const router = express.Router();
-const User = require('../models/usermodel');
-const {regvalidation, loginvalidation} = require('../Validations/uservalidation');
+import User from '../models/usermodel';
+import {regvalidation, loginvalidation} from '../Validations/uservalidation';
 
 //Register User
 router.post('/', async (req, res)=>{

@@ -1,16 +1,16 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-require('dotenv/config');
+import express from 'express';
+import mongoose from 'mongoose';
+import bodyParser from 'body-parser';
+import 'dotenv/config';
 
 const app = express();
 app.use(bodyParser.json());
 
 //Import routes
-const postRoute = require('./routes/posts');
+import postRoute from './routes/posts';
 //const commentRoute = require('./routes/comment');
-const userRoute = require('./routes/users');
-const messageRoute = require('./routes/messages');
+import userRoute from './routes/users';
+import messageRoute from './routes/messages';
 
 //connecting mongodb
 console.log(process.env.DB_CONNECTION);

@@ -1,4 +1,4 @@
-const Joi = require('@hapi/joi')
+import Joi from '@hapi/joi';
 
 const commentvalidation = data =>{
     const schema = Joi.object({

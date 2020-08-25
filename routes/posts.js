@@ -1,11 +1,11 @@
-const express = require('express');
+import express from 'express';
 
 const router = express.Router();
-const Post = require('../models/postmodel');
+import Post from '../models/postmodel';
 //const Comment = require('../models/commentmodel');
-const verify = require('./verifytoken');
-const {postvalidation} = require('../Validations/postvalidations');
-const {commentvalidation} = require('../Validations/commentvalidation');
+import verify from './verifytoken';
+import {postvalidation} from '../Validations/postvalidations';
+import {commentvalidation} from '../Validations/commentvalidation';
 
 //Submit Posts
 router.post('/',verify, (req, res)=>{
