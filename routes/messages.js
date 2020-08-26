@@ -6,7 +6,7 @@ import {messagevalidation} from '../Validations/messagevalidation';
 
 
 //Submit Message
-router.post('/', (req, res)=>{
+router.post('/',verify, (req, res)=>{
 
     //Validate message before submitting
     const {error} = messagevalidation(req.body);
@@ -51,7 +51,7 @@ router.get('/:messageId', async (req, res)=>{
 });
  
 //Delete Message
-router.delete('/:messageId', async (req,res)=>{
+router.delete('/:messageId',verify, async (req,res)=>{
     try{
         const deletedMessage= await Message.remove({_id: req.params.messageId});
         res.json(deletedMessage);

@@ -2,9 +2,11 @@
   "name": "freshapi",
   "version": "1.0.0",
   "description": "This is an API for FreshBlogs",
+  "type": "module",
   "main": "index.js",
   "engines": {
     "node": "v14.8.0"
+    
   },
   "scripts": {
     "start": "node index",
