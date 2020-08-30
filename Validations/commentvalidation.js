@@ -7,4 +7,5 @@ const commentvalidation = data =>{
    return schema.validate(data);
 };
 
-module.exports.commentvalidation = commentvalidation;
+//module.exports.commentvalidation = commentvalidation;
+export default commentvalidation;

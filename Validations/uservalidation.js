@@ -18,5 +18,6 @@ const loginvalidation = data =>{
    return schema.validate(data);
 };
 
-module.exports.loginvalidation = loginvalidation;
-module.exports.regvalidation = regvalidation;
+//module.exports.loginvalidation = loginvalidation;
+//module.exports.regvalidation = regvalidation;
+export default {loginvalidation, regvalidation}

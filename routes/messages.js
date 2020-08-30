@@ -1,8 +1,8 @@
 import express from 'express';
 const router = express.Router();
-import Message from '../models/messagemodel';
-import verify from './verifytoken';
-import {messagevalidation} from '../Validations/messagevalidation';
+import Message from '../models/messagemodel.js';
+import verify from './verifytoken.js';
+import messagevalidation from '../Validations/messagevalidation.js';
 
 
 //Submit Message
@@ -79,4 +79,4 @@ router.patch('/:messageId', async (req,res)=>{
 });
 
 
-module.exports = router;
+export default router;

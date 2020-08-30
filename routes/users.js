@@ -1,12 +1,14 @@
 import express from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import verify from './verifytoken';
-import 'dotenv/config';
+import verify from './verifytoken.js';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const router = express.Router();
-import User from '../models/usermodel';
-import {regvalidation, loginvalidation} from '../Validations/uservalidation';
+import User from '../models/usermodel.js';
+import regvalidation from '../Validations/uservalidation.js';
+import loginvalidation from '../Validations/uservalidation.js';
 
 //Register User
 router.post('/', async (req, res)=>{
@@ -131,5 +133,4 @@ const hashedPassword = await bcrypt.hash(req.body.Password, salt);
     }
 });
 
-
-module.exports = router;
+export default router;

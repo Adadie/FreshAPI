@@ -1,19 +1,19 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import bodyParser from 'body-parser';
 import cors from 'cors';
 
-require ('dotenv/config');
+import dotenv from 'dotenv';
+dotenv.config();
 
 const app = express();
-app.use(bodyParser.json());
+app.use(express.json());
 app.use(cors());
 
 //Import routes
-import postRoute from './routes/posts';
+import postRoute from './routes/posts.js';
 //const commentRoute = require('./routes/comment');
-import userRoute from './routes/users';
-import messageRoute from './routes/messages';
+import userRoute from './routes/users.js'
+import messageRoute from './routes/messages.js';
 
 //connecting mongodb
 console.log(process.env.DB_CONNECTION);
@@ -43,4 +43,5 @@ app.get('/', (req, res)=>{
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Server Running on port ${port}`)
 );
-module.exports = app;
+//module.exports = app;
+export default app;

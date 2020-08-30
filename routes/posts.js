@@ -1,11 +1,11 @@
 import express from 'express';
 
 const router = express.Router();
-import Post from '../models/postmodel';
+import Post from '../models/postmodel.js';
 //const Comment = require('../models/commentmodel');
-import verify from './verifytoken';
-import {postvalidation} from '../Validations/postvalidations';
-import {commentvalidation} from '../Validations/commentvalidation';
+import verify from './verifytoken.js';
+import postvalidation from '../Validations/postvalidations.js';
+//import {commentvalidation} from '../Validations/commentvalidation.js';
 
 //Submit Posts
 router.post('/',verify, (req, res)=>{
@@ -102,4 +102,4 @@ router.post('/comment',verify, (req, res)=>{
 });
 });
 
-module.exports = router;
+export default router;

@@ -10,4 +10,5 @@ const messagevalidation = data =>{
    return schema.validate(data);
 };
 
-module.exports.messsagevalidation = messagevalidation;
+//module.exports.messsagevalidation = messagevalidation;
+export default messagevalidation;

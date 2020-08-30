@@ -9,4 +9,5 @@ const postvalidation = data =>{
    return schema.validate(data);
 };
 
-module.exports.postvalidation = postvalidation;
+//module.exports.postvalidation = postvalidation;
+export default postvalidation;
