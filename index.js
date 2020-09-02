@@ -9,6 +9,15 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+//CORS Headers
+app.use((res, req, next)=>{
+    res.header('Access-Control-Allow-Origin','*');
+    res.header('Access-Control-Allow-Headers','*');
+    if(req.method =='OPTIONS'){
+        res.header('Access-Control-Allow-Methods','PATCH, DELETE,GET, POST');
+        return res.status(200).json({});
+    }
+})
 //Import routes
 import postRoute from './routes/posts.js';
 //const commentRoute = require('./routes/comment');
