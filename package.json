@@ -2,24 +2,25 @@
   "name": "freshapi",
   "version": "1.0.0",
   "description": "This is an API for FreshBlogs",
-  "type": "module",
   "main": "index.js",
   "engines": {
     "node": "v14.8.0"
   },
   "scripts": {
-    "start": "node --require babel-register index",
-    "dev": "nodemon --require babel-register index",
-    "build": ".\\node_modules\\.bin\\babel"
+    "start": "node dist/index",
+    "dev": "nodemon --exec babel-node src/index.js",
+    "build": ".\\node_modules\\.bin\\babel src --out-dir dist"
   },
   "author": "Adadie-Junior",
   "license": "ISC",
   "dependencies": {
+    "@babel/cli": "^7.11.5",
+    "@babel/core": "^7.11.5",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-es2015": "^7.0.0-beta.53",
+    "@babel/runtime": "^7.11.2",
     "@hapi/joi": "^17.1.1",
     "babel-register": "^6.26.0",
-    "@babel/core": "^7.11.4",
-    "@babel/node": "^7.10.5",
-    "@babel/preset-env": "^7.11.0",
     "bcryptjs": "^2.4.3",
     "body-parse": "^0.1.0",
     "body-parser": "^1.19.0",
@@ -32,9 +33,8 @@
     "mongoose": "^5.10.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.11.4",
     "@babel/node": "^7.10.5",
-    "@babel/preset-env": "^7.11.0",
+    "@babel/plugin-transform-runtime": "^7.11.5",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
     "mocha": "^8.1.1",

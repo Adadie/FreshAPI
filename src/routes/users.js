@@ -7,8 +7,8 @@ dotenv.config();
 
 const router = express.Router();
 import User from '../models/usermodel.js';
-import regvalidation from '../Validations/uservalidation.js';
-import loginvalidation from '../Validations/uservalidation.js';
+import {regvalidation, loginvalidation} from '../Validations/uservalidation.js';
+//import loginvalidation from '../Validations/uservalidation.js';
 
 //Register User
 router.post('/', async (req, res)=>{
@@ -16,13 +16,13 @@ router.post('/', async (req, res)=>{
 //Validate register before submitting
     const {error} = regvalidation(req.body);
     if(error) {
-        return res.status(400).send(error.details[0].message);
+        return res.status(400).json({err:error.details[0].message});
     }
 
 //Checking If email already exists
      const emailExist = await User.findOne({Email:req.body.Email});
     if(emailExist){ 
-         return res.status(400).send('Email already exists');
+         return res.status(400).json({message: 'Email already exists'});
     }
 
 //Hashing Password

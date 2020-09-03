@@ -1,6 +1,6 @@
 import Joi from '@hapi/joi';
 
-const regvalidation = data =>{
+export const regvalidation = data =>{
     const schema = Joi.object({
     Fname: Joi.string().min(3).required(),
     Lname: Joi.string().min(3).required(),
@@ -10,7 +10,7 @@ const regvalidation = data =>{
    return schema.validate(data);
 };
 
-const loginvalidation = data =>{
+export const loginvalidation = data =>{
     const schema = Joi.object({
     Email: Joi.string().min(8).required().email(),
     Password: Joi.string().min(8).required()
@@ -20,4 +20,4 @@ const loginvalidation = data =>{
 
 //module.exports.loginvalidation = loginvalidation;
 //module.exports.regvalidation = regvalidation;
-export default {loginvalidation, regvalidation}
+//export default {loginvalidation, regvalidation}

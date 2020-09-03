@@ -17,7 +17,8 @@ app.use((res, req, next)=>{
         res.header('Access-Control-Allow-Methods','PATCH, DELETE,GET, POST');
         return res.status(200).json({});
     }
-})
+    next();
+});
 //Import routes
 import postRoute from './routes/posts.js';
 //const commentRoute = require('./routes/comment');
@@ -49,7 +50,7 @@ app.get('/', (req, res)=>{
 });
 
 //Listening
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server Running on port ${port}`)
 );
 //module.exports = app;
