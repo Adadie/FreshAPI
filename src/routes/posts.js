@@ -54,16 +54,16 @@ router.get('/:postId',verify, async (req, res)=>{
 });
  
 //Delete Post
-router.delete('/Delete',verify, async (req,res)=>{
+router.delete('/Delete/:postId',verify, async (req,res)=>{
     try{
-        const deletedPost= await Post.remove({_id: req.user._id});
+        const deletedPost= await Post.deleteOne({_id: req.params.postId});
         res.json('Successfully Deleted Post');
     }catch(err){
         res.json({message: err});
     }
 
 //Update posts
-router.patch('/:postId',verify, async (req,res)=>{
+router.patch('/:postId', async (req,res)=>{
 
     //Validate register before updating
     const {error} = postvalidation(req.body);

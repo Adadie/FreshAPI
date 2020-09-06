@@ -124,7 +124,7 @@ router.get('/:postId', _verifytoken["default"], /*#__PURE__*/function () {
   };
 }()); //Delete Post
 
-router["delete"]('/Delete', _verifytoken["default"], /*#__PURE__*/function () {
+router["delete"]('/Delete/:postId', _verifytoken["default"], /*#__PURE__*/function () {
   var _ref3 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4(req, res) {
     var deletedPost;
     return _regenerator["default"].wrap(function _callee4$(_context4) {
@@ -133,8 +133,8 @@ router["delete"]('/Delete', _verifytoken["default"], /*#__PURE__*/function () {
           case 0:
             _context4.prev = 0;
             _context4.next = 3;
-            return _postmodel["default"].remove({
-              _id: req.user._id
+            return _postmodel["default"].deleteOne({
+              _id: req.params.postId
             });
 
           case 3:
@@ -152,7 +152,7 @@ router["delete"]('/Delete', _verifytoken["default"], /*#__PURE__*/function () {
 
           case 10:
             //Update posts
-            router.patch('/:postId', _verifytoken["default"], /*#__PURE__*/function () {
+            router.patch('/:postId', /*#__PURE__*/function () {
               var _ref4 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee3(req, res) {
                 var _postvalidation2, error, updatedPost;
 
