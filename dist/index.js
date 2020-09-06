@@ -62,7 +62,7 @@ app.get('/', function (req, res) {
   res.status(200).send('Hello Rwanda');
 }); //Listening
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 5000;
 app.listen(port, function () {
   return console.log("Server Running on port ".concat(port));
 }); //module.exports = app;

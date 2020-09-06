@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = void 0;
+exports.loginvalidation = exports.regvalidation = void 0;
 
 var _joi = _interopRequireDefault(require("@hapi/joi"));
 
@@ -20,6 +20,8 @@ var regvalidation = function regvalidation(data) {
   return schema.validate(data);
 };
 
+exports.regvalidation = regvalidation;
+
 var loginvalidation = function loginvalidation(data) {
   var schema = _joi["default"].object({
     Email: _joi["default"].string().min(8).required().email(),
@@ -29,10 +31,7 @@ var loginvalidation = function loginvalidation(data) {
   return schema.validate(data);
 }; //module.exports.loginvalidation = loginvalidation;
 //module.exports.regvalidation = regvalidation;
+//export default {loginvalidation, regvalidation}
 
 
-var _default = {
-  loginvalidation: loginvalidation,
-  regvalidation: regvalidation
-};
-exports["default"] = _default;
+exports.loginvalidation = loginvalidation;

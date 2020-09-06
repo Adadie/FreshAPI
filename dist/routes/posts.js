@@ -63,7 +63,7 @@ router.get('/', _verifytoken["default"], /*#__PURE__*/function () {
 
           case 3:
             posts = _context.sent;
-            res.json(posts);
+            res.status(200).json(posts);
             _context.next = 10;
             break;
 

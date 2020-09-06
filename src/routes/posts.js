@@ -36,7 +36,7 @@ router.post('/',verify, (req, res)=>{
 router.get('/',verify, async (req, res)=> {
     try{
         const posts = await Post.find();
-        res.json(posts);
+        res.status(200).json(posts)
     }catch(err){
         res.json({message: err});
     }

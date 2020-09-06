@@ -23,12 +23,13 @@ var _dotenv = _interopRequireDefault(require("dotenv"));
 
 var _usermodel = _interopRequireDefault(require("../models/usermodel.js"));
 
-var _uservalidation = _interopRequireDefault(require("../Validations/uservalidation.js"));
+var _uservalidation = require("../Validations/uservalidation.js");
 
 _dotenv["default"].config();
 
 var router = _express["default"].Router();
 
+//import loginvalidation from '../Validations/uservalidation.js';
 //Register User
 router.post('/', /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(req, res) {
@@ -39,14 +40,16 @@ router.post('/', /*#__PURE__*/function () {
         switch (_context.prev = _context.next) {
           case 0:
             //Validate register before submitting
-            _regvalidation = (0, _uservalidation["default"])(req.body), error = _regvalidation.error;
+            _regvalidation = (0, _uservalidation.regvalidation)(req.body), error = _regvalidation.error;
 
             if (!error) {
               _context.next = 3;
               break;
             }
 
-            return _context.abrupt("return", res.status(400).send(error.details[0].message));
+            return _context.abrupt("return", res.status(400).json({
+              err: error.details[0].message
+            }));
 
           case 3:
             _context.next = 5;
@@ -62,7 +65,9 @@ router.post('/', /*#__PURE__*/function () {
               break;
             }
 
-            return _context.abrupt("return", res.status(400).send('Email already exists'));
+            return _context.abrupt("return", res.status(400).json({
+              message: 'Email already exists'
+            }));
 
           case 8:
             _context.next = 10;
@@ -124,7 +129,7 @@ router.post('/login', /*#__PURE__*/function () {
         switch (_context2.prev = _context2.next) {
           case 0:
             //Validate register before loggin user in
-            _loginvalidation = (0, _uservalidation["default"])(req.body), error = _loginvalidation.error;
+            _loginvalidation = (0, _uservalidation.loginvalidation)(req.body), error = _loginvalidation.error;
 
             if (!error) {
               _context2.next = 3;
@@ -311,7 +316,7 @@ router.patch('/update', _verifytoken["default"], /*#__PURE__*/function () {
         switch (_context6.prev = _context6.next) {
           case 0:
             //Validate register before submitting
-            _regvalidation2 = (0, _uservalidation["default"])(req.body), error = _regvalidation2.error;
+            _regvalidation2 = (0, _uservalidation.regvalidation)(req.body), error = _regvalidation2.error;
 
             if (!error) {
               _context6.next = 3;
